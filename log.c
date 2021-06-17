@@ -43,8 +43,10 @@ loginit(const char *builddir)
 	nline = 0;
 	nentry = 0;
 
-	if (logfile)
+	if (logfile) {
 		fclose(logfile);
+		logfile = NULL;
+	}
 	if (builddir)
 		xasprintf(&logpath, "%s/%s", builddir, logname);
 	logfile = fopen(logpath, "r+");
@@ -116,8 +118,10 @@ loginit(const char *builddir)
 	}
 
 rewrite:
-	if (logfile)
+	if (logfile) {
 		fclose(logfile);
+		logfile = NULL;
+	}
 	if (builddir)
 		xasprintf(&logtmppath, "%s/%s", builddir, logtmpname);
 	logfile = fopen(logtmppath, "w");
@@ -153,6 +157,7 @@ logclose(void)
 	if (ferror(logfile))
 		fatal("build log write failed");
 	fclose(logfile);
+	logfile = NULL;
 }
 
 void

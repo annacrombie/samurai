@@ -125,8 +125,10 @@ depsinit(const char *builddir)
 	/* XXX: when ninja hits a bad record, it truncates the log to the last
 	 * good record. perhaps we should do the same. */
 
-	if (depsfile)
+	if (depsfile) {
 		fclose(depsfile);
+		depsfile = NULL;
+	}
 	entrieslen = 0;
 	cap = BUFSIZ;
 	buf = xmalloc(cap);
@@ -245,8 +247,10 @@ depsinit(const char *builddir)
 
 rewrite:
 	free(buf);
-	if (depsfile)
+	if (depsfile) {
 		fclose(depsfile);
+		depsfile = NULL;
+	}
 	if (builddir)
 		xasprintf(&depstmppath, "%s/%s", builddir, depstmpname);
 	depsfile = fopen(depstmppath, "w");
@@ -293,6 +297,7 @@ depsclose(void)
 	if (ferror(depsfile))
 		fatal("deps log write failed");
 	fclose(depsfile);
+	depsfile = NULL;
 }
 
 static struct nodearray *
