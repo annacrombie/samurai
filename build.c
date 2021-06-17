@@ -550,7 +550,6 @@ build(void)
 	struct edge *e;
 
 	if (ntotal == 0) {
-		warn("nothing to do");
 		return;
 	}
 
