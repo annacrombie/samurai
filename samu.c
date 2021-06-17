@@ -14,6 +14,7 @@
 #include "parse.h"
 #include "tool.h"
 #include "util.h"
+#include "samu.h"
 
 const char *argv0;
 
@@ -139,7 +140,7 @@ progname(const char *arg, const char *def)
 }
 
 int
-main(int argc, char *argv[])
+samu_main(int argc, char *argv[])
 {
 	char *builddir, *manifest = "build.ninja", *end, *arg;
 	const struct tool *tool = NULL;
