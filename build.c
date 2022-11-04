@@ -1,4 +1,6 @@
+#ifndef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200809L
+#endif
 #ifndef NO_GETLOADAVG
 #define _BSD_SOURCE /* for getloadavg */
 #endif

@@ -1,4 +1,6 @@
+#ifndef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200809L
+#endif
 #include <errno.h>
 #include <stdbool.h>
 #include <stdio.h>
